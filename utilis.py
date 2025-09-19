@@ -18,6 +18,19 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+import os
+import numpy as np
+from typing import Optional, Tuple, Generator, Dict, Any
+from sklearn.model_selection import train_test_split
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, TensorDataset
+from torchvision import transforms
+import time
+from tqdm import tqdm
+import pickle
+
 
 
 class Utility:
@@ -228,3 +241,176 @@ class Score:
             return score
         else:
             return -10**6
+        
+
+
+def KL_div_posterior_loss(pred_means, pred_sigmas, truths):
+    """
+    A KL divergence loss function that directly optimizes the score function
+    
+    Inputs:
+    - pred_means:   2D tensor (batch_size, 2)
+    - pred_sigmas:  2D tensor (batch_size, 2) 
+    - truths:       2D tensor (batch_size, 2)
+    """
+    
+    residuals_sq = (pred_means - truths)**2  
+    
+    loss_terms = residuals_sq / (pred_sigmas**2)
+    loss_sum = torch.sum(loss_terms, dim=1)
+    
+    log_sigma_terms = torch.sum(torch.log(pred_sigmas**2), dim=1)
+
+
+    loss = torch.mean(loss_sum + log_sigma_terms)
+    
+    return loss
+
+
+
+
+
+def train_epoch(model, dataloader, loss_fn, optimizer, device):
+    """Trains the model for one epoch."""
+    model.train()
+    total_loss = 0
+    pbar = tqdm(dataloader, total=len(dataloader), desc="Training")
+    for X, y in pbar:
+        X, y = X.to(device), y.to(device)
+        # Forward pass
+        pred_means, pred_sigmas= model(X)
+
+        loss = loss_fn(pred_means, pred_sigmas, y)
+
+        # Backward pass and optimization
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        
+        total_loss += loss.item()
+    
+    return total_loss / len(dataloader)
+
+
+def validate_epoch(model, dataloader, loss_fn, device):
+    """Validates the model on the validation/test set."""
+    model.eval()
+    total_loss = 0
+    pbar = tqdm(dataloader, total=len(dataloader), desc="Validating")
+    with torch.no_grad():
+        for X, y in pbar:
+            X, y = X.to(device), y.to(device)
+            pred_means, pred_sigmas = model(X)
+            total_loss += loss_fn(pred_means, pred_sigmas, y).item()
+            
+    return total_loss / len(dataloader)
+
+
+class CosmologyDataset(Dataset):
+    """
+    Custom PyTorch Dataset
+    """
+    
+    def __init__(self, data, labels=None,
+                 transform=None,
+                 label_transform=None):
+        self.data = data
+        self.labels = labels
+        self.transform = transform
+        self.label_transform = label_transform
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        image = self.data[idx].astype(np.float32)   # Convert from float16 to float32
+        if self.transform:
+            image = self.transform(image) 
+        if self.labels is not None:
+            label = self.labels[idx].astype(np.float32)
+            label = torch.from_numpy(label)
+            if self.label_transform:
+                label = self.label_transform(label)
+            return image, label
+        else:
+            return image
+        
+
+class Config:
+    IMG_HEIGHT = 1424
+    IMG_WIDTH = 176
+    
+    # Parameters to predict (Omega_m, S_8, sigma_Omega_m, sigma_S_8)
+    NUM_TARGETS = 4
+
+    # Training hyperparameters
+    BATCH_SIZE = 128
+    EPOCHS = 25
+    LEARNING_RATE = 2e-4
+    WEIGHT_DECAY = 1e-4   # L2 regularization to prevent overfitting
+    IMG_RESIZE = 256  # Resize images to 256x256 for ViT
+    DEVICE = "mps" if torch.has_mps else "cpu"
+    MODEL_SAVE_PATH = None  # Will be set dynamically with timestamp
+
+def save_config_and_lr(config: Config, optimizer: optim.Optimizer, config_file: str):
+    """
+    Save the Config object and the current learning rate of the optimizer.
+
+    Args:
+        config: Config object containing training hyperparameters.
+        optimizer: PyTorch optimizer with current learning rate.
+        config_file: Path to save the config and learning rate.
+    """
+    # Get current learning rate from optimizer
+    current_lr = optimizer.param_groups[0]['lr']
+    
+    # Save config attributes and learning rate
+    config_dict = {
+        'IMG_HEIGHT': config.IMG_HEIGHT,
+        'IMG_WIDTH': config.IMG_WIDTH,
+        'NUM_TARGETS': config.NUM_TARGETS,
+        'BATCH_SIZE': config.BATCH_SIZE,
+        'EPOCHS': config.EPOCHS,
+        'LEARNING_RATE': config.LEARNING_RATE,
+        'WEIGHT_DECAY': config.WEIGHT_DECAY,
+        'DEVICE': config.DEVICE,
+        'MODEL_SAVE_PATH': config.MODEL_SAVE_PATH,
+        'IMG_RESIZE': config.IMG_RESIZE,
+        'current_lr': current_lr
+    }
+    
+    os.makedirs(os.path.dirname(config_file) or '.', exist_ok=True)
+    with open(config_file, 'wb') as f:
+        pickle.dump(config_dict, f)
+    print(f"Saved config and learning rate to {config_file}")
+
+def load_config_and_lr(config_file: str) -> Tuple[Config, float]:
+    """
+    Load the Config object and the last learning rate for continued training.
+
+    Args:
+        config_file: Path to the saved config and learning rate.
+
+    Returns:
+        Tuple of (Config object, last learning rate).
+    """
+    with open(config_file, 'rb') as f:
+        config_dict = pickle.load(f)
+    
+    # Reconstruct Config object
+    config = Config()
+    config.IMG_HEIGHT = config_dict['IMG_HEIGHT']
+    config.IMG_WIDTH = config_dict['IMG_WIDTH']
+    config.NUM_TARGETS = config_dict['NUM_TARGETS']
+    config.BATCH_SIZE = config_dict['BATCH_SIZE']
+    config.EPOCHS = config_dict['EPOCHS']
+    config.LEARNING_RATE = config_dict['LEARNING_RATE']
+    config.WEIGHT_DECAY = config_dict['WEIGHT_DECAY']
+    config.DEVICE = config_dict['DEVICE']
+    config.MODEL_SAVE_PATH = config_dict['MODEL_SAVE_PATH']
+    config.IMG_RESIZE = config_dict['IMG_RESIZE']
+    current_lr = config_dict['current_lr']
+    
+    print(f"Loaded config from {config_file}")
+    print(f"Loaded learning rate: {current_lr}")
+    return config, current_lr
