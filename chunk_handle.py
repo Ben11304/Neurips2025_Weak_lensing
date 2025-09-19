@@ -5,8 +5,9 @@ import numpy as np
 from typing import List, Optional, Generator, Tuple, Iterable
 import joblib
 import pickle
-import numpy as np
 from torchvision import transforms
+from sklearn.preprocessing import StandardScaler
+from tqdm import tqdm
 
 _CHUNK_NOISY_PATTERN = re.compile(r'kappa_noisy_chunk_(\d+)\.npy')
 _CHUNK_LABEL_PATTERN = re.compile(r'label_chunk_(\d+)\.npy')
@@ -169,13 +170,6 @@ def batch_generator(chunk_dir: str,
 
 
 
-# import numpy as np
-# from sklearn.preprocessing import StandardScaler
-# from torchvision import transforms
-
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-from tqdm import tqdm
 
 def compute_global_image_stats(chunk_dir: str, indices: list) -> Tuple[float, float]:
     """
