@@ -272,3 +272,68 @@ def load_transform_and_scaler(transform_file='transform_params.pkl', scaler_file
     print(f"Loaded label scaler with Mean={label_scaler.mean_}, Std={np.sqrt(label_scaler.var_)}")
 
     return transform, label_scaler
+
+
+
+def save_transform_and_scaler_ViT(IMG_RESIZE, means, stds, label_scaler, transform_file: str, scaler_file: str):
+    """
+    Save the parameters of the transform (resize size, means, stds) and the label scaler.
+
+    Args:
+        config: Config object containing IMG_RESIZE.
+        means: List or array of mean values used in transforms.Normalize.
+        stds: List or array of standard deviation values used in transforms.Normalize.
+        label_scaler: Fitted StandardScaler object for labels.
+        transform_file: Path to save the transform parameters.
+        scaler_file: Path to save the label scaler.
+    """
+    transform_params = {
+        'resize_size': IMG_RESIZE,
+        'means': means,
+        'stds': stds
+    }
+    os.makedirs(os.path.dirname(transform_file) or '.', exist_ok=True)
+    with open(transform_file, 'wb') as f:
+        pickle.dump(transform_params, f)
+    print(f"Saved transform parameters to {transform_file}")
+    joblib.dump(label_scaler, scaler_file)
+    print(f"Saved label scaler to {scaler_file}")
+
+def load_transform_and_scaler_ViT(IMG_RESIZE, transform_file: str, scaler_file: str):
+    """
+    Load the transform parameters and label scaler, and reconstruct the transform.
+
+    Args:
+        config: Config object containing IMG_RESIZE (for validation).
+        transform_file: Path to the saved transform parameters.
+        scaler_file: Path to the saved label scaler.
+
+    Returns:
+        Tuple of (transform, label_scaler) where transform is a torchvision.transforms.Compose object
+        and label_scaler is a StandardScaler object.
+    """
+    with open(transform_file, 'rb') as f:
+        transform_params = pickle.load(f)
+    resize_size = transform_params['resize_size']
+    means = transform_params['means']
+    stds = transform_params['stds']
+    
+    # Validate resize_size matches config
+    if resize_size != IMG_RESIZE:
+        print(f"Warning: Loaded resize_size {resize_size} does not match config.IMG_RESIZE {config.IMG_RESIZE}. Using config.IMG_RESIZE.")
+        resize_size = IMG_RESIZE
+    
+    # Reconstruct the transform
+    transform = transforms.Compose([
+        transforms.ToPILImage(),
+        transforms.Resize((resize_size, resize_size)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[means], std=[stds]),
+    ])
+    print(f"Loaded transform with Resize=({resize_size}, {resize_size}), Mean={means}, Std={stds}")
+
+    # Load label scaler
+    label_scaler = joblib.load(scaler_file)
+    print(f"Loaded label scaler with Mean={label_scaler.mean_}, Std={np.sqrt(label_scaler.var_)}")
+
+    return transform, label_scaler
