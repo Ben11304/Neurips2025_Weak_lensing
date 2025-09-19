@@ -1,0 +1,37 @@
+{
+  "os":  "macOS-26.0-arm64-arm-64bit",
+  "python":  "CPython 3.12.11",
+  "startedAt":  "2025-09-19T18:49:50.143407Z",
+  "program":  "/Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/CNN_direct_with_2.ipynb",
+  "codePath":  "CNN_direct_with_2.ipynb",
+  "codePathLocal":  "CNN_direct_with_2.ipynb",
+  "git":  {
+    "remote":  "https://github.com/Ben11304/Neurips2025_Weak_lensing.git",
+    "commit":  "9acaf617071dd54bb825fda2ebbd4577241d9613"
+  },
+  "email":  "huydv6210@gmail.com",
+  "root":  "/Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing",
+  "host":  "Mac.devices.kent.edu",
+  "executable":  "/opt/anaconda3/envs/Neurips/bin/python",
+  "cpu_count":  11,
+  "cpu_count_logical":  11,
+  "disk":  {
+    "/":  {
+      "total":  "494384795648",
+      "used":  "410847240192"
+    }
+  },
+  "memory":  {
+    "total":  "19327352832"
+  },
+  "apple":  {
+    "name":  "Apple M3 Pro",
+    "ecpuCores":  6,
+    "pcpuCores":  5,
+    "gpuCores":  14,
+    "memoryGb":  18,
+    "swapTotalBytes":  "50465865728",
+    "ramTotalBytes":  "19327352832"
+  },
+  "writerId":  "suqvp20gvsp0wi5yb3nv0rcmgnqz7p12"
+}

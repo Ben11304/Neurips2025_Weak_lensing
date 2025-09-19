@@ -1,0 +1,85 @@
+_wandb:
+    value:
+        cli_version: 0.22.0
+        e:
+            uo4r2rictyq9ow813oemub1cd767nvqk:
+                apple:
+                    ecpuCores: 6
+                    gpuCores: 14
+                    memoryGb: 18
+                    name: Apple M3 Pro
+                    pcpuCores: 5
+                    ramTotalBytes: "19327352832"
+                    swapTotalBytes: "24696061952"
+                codePath: new_ViT_test_timm.ipynb
+                codePathLocal: new_ViT_test_timm.ipynb
+                cpu_count: 11
+                cpu_count_logical: 11
+                disk:
+                    /:
+                        total: "494384795648"
+                        used: "380016177152"
+                email: huydv6210@gmail.com
+                executable: /opt/anaconda3/envs/Neurips/bin/python
+                git:
+                    commit: 9acaf617071dd54bb825fda2ebbd4577241d9613
+                    remote: https://github.com/Ben11304/Neurips2025_Weak_lensing.git
+                host: Mac.devices.kent.edu
+                memory:
+                    total: "19327352832"
+                os: macOS-26.0-arm64-arm-64bit
+                program: /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/new_ViT_test_timm.ipynb
+                python: CPython 3.12.11
+                root: /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing
+                startedAt: "2025-09-19T18:36:17.410338Z"
+                writerId: uo4r2rictyq9ow813oemub1cd767nvqk
+        m: []
+        python_version: 3.12.11
+        t:
+            "1":
+                - 1
+                - 5
+                - 41
+                - 49
+                - 53
+                - 63
+            "2":
+                - 1
+                - 5
+                - 41
+                - 49
+                - 53
+                - 63
+            "3":
+                - 2
+                - 13
+                - 16
+            "4": 3.12.11
+            "5": 0.22.0
+            "8":
+                - 1
+                - 2
+            "12": 0.22.0
+            "13": darwin-arm64
+BATCH_SIZE:
+    value: 128
+DEVICE:
+    value: mps
+EPOCHS:
+    value: 10
+IMG_HEIGHT:
+    value: 1424
+IMG_RESIZE:
+    value: 256
+IMG_WIDTH:
+    value: 176
+LEARNING_RATE:
+    value: 0.0002
+NUM_TARGETS:
+    value: 4
+WEIGHT_DECAY:
+    value: 0.0001
+epochs_per_chunk:
+    value: 1
+split_ratio:
+    value: 0.8

@@ -6,3 +6,5 @@ torch
 torchvision
 ipykernel
 vit-pytorch
+timm
+wandb
