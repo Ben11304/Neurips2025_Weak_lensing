@@ -1,0 +1,5 @@
+2025-09-19 21:22:57,516 INFO    MainThread:4535 [wandb_init.py:setup_run_log_directory():686] Logging user logs to /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/wandb/run-20250919_212257-e0k5nxku/logs/debug.log
+2025-09-19 21:22:57,517 INFO    MainThread:4535 [wandb_init.py:setup_run_log_directory():687] Logging internal logs to /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/wandb/run-20250919_212257-e0k5nxku/logs/debug-internal.log
+2025-09-19 21:22:57,517 INFO    MainThread:4535 [wandb_init.py:init():813] calling init triggers
+2025-09-19 21:22:57,517 INFO    MainThread:4535 [wandb_init.py:init():818] wandb.init called with sweep_config: {}
+config: {'IMG_HEIGHT': 1424, 'IMG_WIDTH': 176, 'NUM_TARGETS': 4, 'BATCH_SIZE': 101, 'EPOCHS': 10, 'LEARNING_RATE': 0.02, 'WEIGHT_DECAY': 0.0001, 'DEVICE': 'mps', 'IMG_RESIZE': 256, 'split_ratio': 0.8, 'epochs_per_chunk': 1, '_wandb': {}}
