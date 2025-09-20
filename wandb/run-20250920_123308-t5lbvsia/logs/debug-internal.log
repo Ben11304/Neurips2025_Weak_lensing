@@ -1,0 +1,6 @@
+{"time":"2025-09-20T12:33:09.319633-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-09-20T12:33:09.557296-04:00","level":"INFO","msg":"stream: created new stream","id":"t5lbvsia"}
+{"time":"2025-09-20T12:33:09.557406-04:00","level":"INFO","msg":"stream: started","id":"t5lbvsia"}
+{"time":"2025-09-20T12:33:09.557434-04:00","level":"INFO","msg":"sender: started","stream_id":"t5lbvsia"}
+{"time":"2025-09-20T12:33:09.557429-04:00","level":"INFO","msg":"handler: started","stream_id":"t5lbvsia"}
+{"time":"2025-09-20T12:33:09.557823-04:00","level":"INFO","msg":"writer: started","stream_id":"t5lbvsia"}

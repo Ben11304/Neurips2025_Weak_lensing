@@ -21,3 +21,10 @@ config: {'IMG_HEIGHT': 1424, 'IMG_WIDTH': 176, 'NUM_TARGETS': 4, 'BATCH_SIZE': 2
 2025-09-19 23:18:50,458 INFO    MainThread:10640 [wandb_run.py:_redirect():2423] Wrapping output streams.
 2025-09-19 23:18:50,458 INFO    MainThread:10640 [wandb_run.py:_redirect():2446] Redirects installed.
 2025-09-19 23:18:50,461 INFO    MainThread:10640 [wandb_init.py:init():1057] run started, returning control to user process
+2025-09-20 00:31:30,073 INFO    MainThread:10640 [wandb_run.py:_finish():2272] finishing run huy_ben/cosmology_training/ni26jzmn
+2025-09-20 00:31:30,098 INFO    MainThread:10640 [jupyter.py:save_ipynb():404] not saving jupyter notebook
+2025-09-20 00:31:30,098 INFO    MainThread:10640 [wandb_init.py:_jupyter_teardown():590] cleaning up jupyter logic
+2025-09-20 00:31:30,101 INFO    MainThread:10640 [wandb_run.py:_atexit_cleanup():2471] got exitcode: 0
+2025-09-20 00:31:30,105 INFO    MainThread:10640 [wandb_run.py:_restore():2453] restore
+2025-09-20 00:31:30,106 INFO    MainThread:10640 [wandb_run.py:_restore():2459] restore done
+2025-09-20 00:31:43,465 INFO    MainThread:10640 [wandb_run.py:_footer_sync_info():3867] logging synced files

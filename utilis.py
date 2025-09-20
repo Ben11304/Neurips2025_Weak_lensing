@@ -306,18 +306,44 @@ def validate_epoch(model, dataloader, loss_fn, device):
     return total_loss / len(dataloader)
 
 
+
+import numpy as np
+import torch
+from torch.utils.data import Dataset
+import torchvision.transforms as transforms
+
 class CosmologyDataset(Dataset):
     """
-    Custom PyTorch Dataset
+    Custom PyTorch Dataset with optional data augmentation
     """
     
-    def __init__(self, data, labels=None,
-                 transform=None,
-                 label_transform=None):
+    def __init__(self, data, labels=None, transform=None, label_transform=None, augment=False):
+        """
+        Args:
+            data: NumPy array or similar, containing image-like data (e.g., shape [N, H, W] or [N, C, H, W])
+            labels: Optional labels for the data
+            transform: Optional transform to apply to the data
+            label_transform: Optional transform to apply to the labels
+            augment: Boolean to enable/disable data augmentation (random flips and crops)
+        """
         self.data = data
         self.labels = labels
         self.transform = transform
         self.label_transform = label_transform
+        self.augment = augment
+        
+        # Define augmentation pipeline if augment is True
+        if self.augment:
+            # Compose augmentation transforms
+            augmentation_transforms = [
+                transforms.RandomHorizontalFlip(p=0.5),  # 50% chance of horizontal flip
+                transforms.RandomVerticalFlip(p=0.5),    # 50% chance of vertical flip
+            ]
+            # Combine user-provided transform with augmentations
+            if self.transform:
+                self.transform = transforms.Compose(augmentation_transforms + [self.transform])
+            else:
+                self.transform = transforms.Compose(augmentation_transforms)
 
     def __len__(self):
         return len(self.data)
@@ -334,6 +360,36 @@ class CosmologyDataset(Dataset):
             return image, label
         else:
             return image
+
+
+# class CosmologyDataset(Dataset):
+#     """
+#     Custom PyTorch Dataset
+#     """
+    
+#     def __init__(self, data, labels=None,
+#                  transform=None,
+#                  label_transform=None):
+#         self.data = data
+#         self.labels = labels
+#         self.transform = transform
+#         self.label_transform = label_transform
+
+#     def __len__(self):
+#         return len(self.data)
+
+#     def __getitem__(self, idx):
+#         image = self.data[idx].astype(np.float32)   # Convert from float16 to float32
+#         if self.transform:
+#             image = self.transform(image) 
+#         if self.labels is not None:
+#             label = self.labels[idx].astype(np.float32)
+#             label = torch.from_numpy(label)
+#             if self.label_transform:
+#                 label = self.label_transform(label)
+#             return image, label
+#         else:
+#             return image
         
 
 class Config:

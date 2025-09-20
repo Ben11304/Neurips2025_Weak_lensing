@@ -1,0 +1,17 @@
+2025-09-20 12:33:08,539 INFO    MainThread:24404 [wandb_init.py:setup_run_log_directory():686] Logging user logs to /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/wandb/run-20250920_123308-t5lbvsia/logs/debug.log
+2025-09-20 12:33:08,539 INFO    MainThread:24404 [wandb_init.py:setup_run_log_directory():687] Logging internal logs to /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/wandb/run-20250920_123308-t5lbvsia/logs/debug-internal.log
+2025-09-20 12:33:08,541 INFO    MainThread:24404 [wandb_init.py:init():813] calling init triggers
+2025-09-20 12:33:08,541 INFO    MainThread:24404 [wandb_init.py:init():818] wandb.init called with sweep_config: {}
+config: {'IMG_HEIGHT': 1424, 'IMG_WIDTH': 176, 'NUM_TARGETS': 2, 'BATCH_SIZE': 101, 'EPOCHS': 35, 'LEARNING_RATE': 0.0002, 'WEIGHT_DECAY': 0.0001, 'DEVICE': 'mps', 'IMG_RESIZE': 256, 'split_ratio': 0.8, 'epochs_per_chunk': 1, '_wandb': {}}
+2025-09-20 12:33:09,204 INFO    MainThread:24404 [wandb_init.py:init():861] starting backend
+2025-09-20 12:33:09,204 INFO    MainThread:24404 [wandb_init.py:init():864] sending inform_init request
+2025-09-20 12:33:09,226 INFO    MainThread:24404 [wandb_init.py:init():872] backend started and connected
+2025-09-20 12:33:09,395 INFO    MainThread:24404 [wandb_run.py:_label_probe_notebook():1330] probe notebook
+2025-09-20 12:33:09,400 INFO    MainThread:24404 [wandb_init.py:init():942] updated telemetry
+2025-09-20 12:33:09,581 INFO    MainThread:24404 [wandb_init.py:init():966] communicating run to backend with 90.0 second timeout
+2025-09-20 12:33:09,696 INFO    MainThread:24404 [wandb_init.py:init():1017] starting run threads in backend
+2025-09-20 12:33:09,795 INFO    MainThread:24404 [wandb_run.py:_console_start():2506] atexit reg
+2025-09-20 12:33:09,795 INFO    MainThread:24404 [wandb_run.py:_redirect():2354] redirect: wrap_raw
+2025-09-20 12:33:09,796 INFO    MainThread:24404 [wandb_run.py:_redirect():2423] Wrapping output streams.
+2025-09-20 12:33:09,796 INFO    MainThread:24404 [wandb_run.py:_redirect():2446] Redirects installed.
+2025-09-20 12:33:09,798 INFO    MainThread:24404 [wandb_init.py:init():1057] run started, returning control to user process

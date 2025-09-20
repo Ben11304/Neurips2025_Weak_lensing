@@ -1,0 +1,25 @@
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_setup.py:_flush():81] Current SDK version is 0.22.0
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_setup.py:_flush():81] Configure stats pid to 13315
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_setup.py:_flush():81] Loading settings from /Users/viethuy/.config/wandb/settings
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_setup.py:_flush():81] Loading settings from /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/wandb/settings
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_init.py:setup_run_log_directory():686] Logging user logs to /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/wandb/run-20250920_004647-6i7xhxkq/logs/debug.log
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_init.py:setup_run_log_directory():687] Logging internal logs to /Users/viethuy/Working_space/Neurips/Neurips2025_Weak_lensing/wandb/run-20250920_004647-6i7xhxkq/logs/debug-internal.log
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_init.py:monkeypatch_ipython():605] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x305c80fe0>
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_init.py:init():813] calling init triggers
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_init.py:init():818] wandb.init called with sweep_config: {}
+config: {'IMG_HEIGHT': 1424, 'IMG_WIDTH': 176, 'NUM_TARGETS': 4, 'BATCH_SIZE': 101, 'EPOCHS': 35, 'LEARNING_RATE': 0.0002, 'WEIGHT_DECAY': 0.0001, 'DEVICE': 'mps', 'IMG_RESIZE': 256, 'split_ratio': 0.8, 'epochs_per_chunk': 1, '_wandb': {}}
+2025-09-20 00:46:47,282 INFO    MainThread:13315 [wandb_init.py:init():861] starting backend
+2025-09-20 00:46:47,506 INFO    MainThread:13315 [wandb_init.py:init():864] sending inform_init request
+2025-09-20 00:46:47,524 INFO    MainThread:13315 [wandb_init.py:init():872] backend started and connected
+2025-09-20 00:46:47,527 INFO    MainThread:13315 [wandb_run.py:_label_probe_notebook():1330] probe notebook
+2025-09-20 00:46:47,529 INFO    MainThread:13315 [wandb_init.py:init():942] updated telemetry
+2025-09-20 00:46:47,557 INFO    MainThread:13315 [wandb_init.py:init():966] communicating run to backend with 90.0 second timeout
+2025-09-20 00:46:47,873 INFO    MainThread:13315 [wandb_init.py:init():1017] starting run threads in backend
+2025-09-20 00:46:47,927 INFO    MainThread:13315 [wandb_run.py:_console_start():2506] atexit reg
+2025-09-20 00:46:47,927 INFO    MainThread:13315 [wandb_run.py:_redirect():2354] redirect: wrap_raw
+2025-09-20 00:46:47,927 INFO    MainThread:13315 [wandb_run.py:_redirect():2423] Wrapping output streams.
+2025-09-20 00:46:47,927 INFO    MainThread:13315 [wandb_run.py:_redirect():2446] Redirects installed.
+2025-09-20 00:46:47,928 INFO    MainThread:13315 [wandb_init.py:init():1057] run started, returning control to user process
+2025-09-20 00:46:55,035 INFO    wandb-AsyncioManager-main:13315 [service_client.py:_forward_responses():84] Reached EOF.
+2025-09-20 00:46:55,036 INFO    wandb-AsyncioManager-main:13315 [mailbox.py:close():137] Closing mailbox, abandoning 1 handles.

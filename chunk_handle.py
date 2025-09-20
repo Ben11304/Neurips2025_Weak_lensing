@@ -314,7 +314,7 @@ def load_transform_and_scaler_ViT(IMG_RESIZE, transform_file: str, scaler_file: 
     
     # Validate resize_size matches config
     if resize_size != IMG_RESIZE:
-        print(f"Warning: Loaded resize_size {resize_size} does not match config.IMG_RESIZE {config.IMG_RESIZE}. Using config.IMG_RESIZE.")
+        print(f"Warning: Loaded resize_size {resize_size} does not match config.IMG_RESIZE Using config.IMG_RESIZE.")
         resize_size = IMG_RESIZE
     
     # Reconstruct the transform
