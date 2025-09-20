@@ -1,0 +1,123 @@
+_wandb:
+    value:
+        cli_version: 0.22.0
+        e:
+            15poa5o4n1t3xmzekgreem3e0a1i8bq9:
+                codePath: Alex_net_with MCMC_server copy.ipynb
+                codePathLocal: Alex_net_with MCMC_server copy.ipynb
+                cpu_count: 96
+                cpu_count_logical: 96
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "41956900864"
+                        used: "11954212864"
+                email: trung.le@ufl.edu
+                executable: /blue/dforte/trung.le/.conda/envs/latest_env/bin/python
+                git:
+                    commit: 43f2a7b55ca96bbb528b545cbce2f285c1430b85
+                    remote: https://github.com/Ben11304/Neurips2025_Weak_lensing.git
+                gpu: NVIDIA L4
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      cudaCores: 7424
+                      memoryTotal: "24152899584"
+                      name: NVIDIA L4
+                      uuid: GPU-c758b857-12e1-52d7-11ed-c69ba921743f
+                host: c0605a-s9.ufhpc
+                memory:
+                    total: "810638639104"
+                os: Linux-5.14.0-503.40.1.el9_5.x86_64-x86_64-with-glibc2.34
+                program: /blue/dforte/trung.le/misc/Neurips2025_Weak_lensing/Alex_net_with MCMC_server copy.ipynb
+                python: CPython 3.13.7
+                root: /blue/dforte/trung.le/misc/Neurips2025_Weak_lensing
+                slurm:
+                    cluster_name: hipergator
+                    conf: /opt/slurm/etc/slurm.conf
+                    cpus_on_node: "12"
+                    cpus_per_task: "12"
+                    gpus: "1"
+                    gpus_on_node: "1"
+                    gtids: "0"
+                    job_account: dforte
+                    job_cpus_per_node: "12"
+                    job_end_time: "1758429583"
+                    job_gid: "3684"
+                    job_gpus: "1"
+                    job_id: "13480029"
+                    job_name: vscode
+                    job_nodelist: c0605a-s9
+                    job_num_nodes: "1"
+                    job_partition: hpg-turin
+                    job_qos: dforte
+                    job_start_time: "1758386383"
+                    job_uid: "8957"
+                    job_user: trung.le
+                    jobid: "13480029"
+                    localid: "0"
+                    mem_per_node: "98304"
+                    nnodes: "1"
+                    nodeid: "0"
+                    nodelist: c0605a-s9
+                    nprocs: "1"
+                    ntasks: "1"
+                    oom_kill_step: "0"
+                    prio_process: "0"
+                    procid: "0"
+                    submit_dir: /blue/dforte/trung.le/difflogic/diff-replica-2025/slurm_out
+                    submit_host: login8.ufhpc
+                    task_pid: "914801"
+                    tasks_per_node: "1"
+                    tmpdir: /scratch/local/13480029
+                    topology_addr: ibcore.ibsw0604-s16.c0605a-s9
+                    topology_addr_pattern: switch.switch.node
+                    tres_per_task: cpu=12
+                startedAt: "2025-09-20T17:07:54.209869Z"
+                writerId: 15poa5o4n1t3xmzekgreem3e0a1i8bq9
+        m: []
+        python_version: 3.13.7
+        t:
+            "1":
+                - 1
+                - 5
+                - 41
+                - 53
+            "2":
+                - 1
+                - 5
+                - 41
+                - 53
+            "3":
+                - 2
+                - 3
+                - 13
+                - 16
+            "4": 3.13.7
+            "5": 0.22.0
+            "8":
+                - 1
+            "12": 0.22.0
+            "13": linux-x86_64
+BATCH_SIZE:
+    value: 101
+DEVICE:
+    value: cuda
+EPOCHS:
+    value: 35
+IMG_HEIGHT:
+    value: 1424
+IMG_RESIZE:
+    value: 256
+IMG_WIDTH:
+    value: 176
+LEARNING_RATE:
+    value: 0.0001
+NUM_TARGETS:
+    value: 2
+WEIGHT_DECAY:
+    value: 0.0001
+epochs_per_chunk:
+    value: 1
+split_ratio:
+    value: 0.8

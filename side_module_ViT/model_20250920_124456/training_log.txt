@@ -1,0 +1,6 @@
+Training Log
+Started at 2025-09-20 12:44:56
+Config: EPOCHS=5, BATCH_SIZE=101, LEARNING_RATE=0.0002, DEVICE=cuda, MODEL_SAVE_PATH=./side_module_ViT/model_20250920_124456/best_model.pth
+
+Epoch 1/5
+  Processing chunk 0...
