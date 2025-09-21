@@ -1,0 +1,6 @@
+{"time":"2025-09-21T00:11:04.690735-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-09-21T00:11:04.919604-04:00","level":"INFO","msg":"stream: created new stream","id":"gmenyrdu"}
+{"time":"2025-09-21T00:11:04.919641-04:00","level":"INFO","msg":"stream: started","id":"gmenyrdu"}
+{"time":"2025-09-21T00:11:04.91965-04:00","level":"INFO","msg":"handler: started","stream_id":"gmenyrdu"}
+{"time":"2025-09-21T00:11:04.919663-04:00","level":"INFO","msg":"writer: started","stream_id":"gmenyrdu"}
+{"time":"2025-09-21T00:11:04.919653-04:00","level":"INFO","msg":"sender: started","stream_id":"gmenyrdu"}

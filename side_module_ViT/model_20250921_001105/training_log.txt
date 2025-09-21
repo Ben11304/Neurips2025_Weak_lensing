@@ -1,0 +1,10 @@
+Training Log
+Started at 2025-09-21 00:11:05
+Config: EPOCHS=35, BATCH_SIZE=101, LEARNING_RATE=0.0002, DEVICE=mps, MODEL_SAVE_PATH=./side_module_ViT/model_20250921_001105/best_model.pth
+
+Epoch 1/35
+  Processing chunk 0...
+Epoch 1/1 | Train Loss: 2.146338
+  Processing chunk 1...
+Epoch 1/1 | Train Loss: 1.205854
+  Processing chunk 2...

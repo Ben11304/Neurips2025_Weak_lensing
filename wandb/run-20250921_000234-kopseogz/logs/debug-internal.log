@@ -1,0 +1,6 @@
+{"time":"2025-09-21T00:02:35.156713-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-09-21T00:02:35.37359-04:00","level":"INFO","msg":"stream: created new stream","id":"kopseogz"}
+{"time":"2025-09-21T00:02:35.373621-04:00","level":"INFO","msg":"stream: started","id":"kopseogz"}
+{"time":"2025-09-21T00:02:35.373625-04:00","level":"INFO","msg":"handler: started","stream_id":"kopseogz"}
+{"time":"2025-09-21T00:02:35.373637-04:00","level":"INFO","msg":"sender: started","stream_id":"kopseogz"}
+{"time":"2025-09-21T00:02:35.37365-04:00","level":"INFO","msg":"writer: started","stream_id":"kopseogz"}
