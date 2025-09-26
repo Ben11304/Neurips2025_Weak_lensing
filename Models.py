@@ -131,3 +131,148 @@ class Simple_CNN(nn.Module):
         log_sigmas = x[:, 2:]    # Predict log(σ) to ensure positivity
         sigmas = torch.exp(log_sigmas)
         return means, sigmas     # Note that means and sigmas here have to be rescaled properly due to standardization
+    
+
+class Spectrum_CNN(nn.Module):
+    def __init__(self, height, width, num_targets):
+        super(Simple_CNN, self).__init__()
+        self.conv_stack = nn.Sequential(
+            nn.Conv2d(1, 16, kernel_size=5, stride=2, padding=2),
+            nn.BatchNorm2d(16),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+
+            nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+
+            nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+
+            nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+            
+        )
+
+        self._feature_size = self._get_conv_output_size(height, width)
+        
+        self.fc_stack = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(self._feature_size + 10, 512),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(512, 128),
+            nn.ReLU(),
+            nn.Dropout(0.1),
+            nn.Linear(128, num_targets)
+        )
+
+    def _get_conv_output_size(self, height, width): 
+        dummy_input = torch.zeros(1, 1, height, width)
+        output = self.conv_stack(dummy_input)
+        return int(np.prod(output.size()))
+
+    def forward(self, x):
+        image, spec = x  # Unpack tuple (image batch, spec batch)
+        conv_out = self.conv_stack(image)  # Apply conv to image only
+        # fc_stack handles flatten and cat internally, but since cat needs to be before first Linear:
+        flattened = nn.Flatten()(conv_out)  # (batch_size, _feature_size)
+        combined = torch.cat((flattened, spec), dim=1)  # (batch_size, _feature_size + 10)
+        return self.fc_stack[1:](combined)  # Skip Flatten in fc_stack, apply the rest
+    
+
+
+
+class Spectrum_CNNv2(nn.Module):
+    def __init__(self, height, width, num_targets):
+        super(Simple_CNN, self).__init__()
+        self.conv_stack = nn.Sequential(
+            nn.Conv2d(1, 64, kernel_size=11, stride=4, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(64, 192, kernel_size=5, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(192, 384, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(384, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(256, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+        )
+
+        self._feature_size = self._get_conv_output_size(height, width)
+        
+        self.fc_stack = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(self._feature_size + 10, 512),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(512, 128),
+            nn.ReLU(),
+            nn.Dropout(0.1),
+            nn.Linear(128, num_targets)
+        )
+
+    def _get_conv_output_size(self, height, width): 
+        dummy_input = torch.zeros(1, 1, height, width)
+        output = self.conv_stack(dummy_input)
+        return int(np.prod(output.size()))
+
+    def forward(self, x):
+        image, spec = x  # Unpack tuple (image batch, spec batch)
+        conv_out = self.conv_stack(image)  # Apply conv to image only
+        # fc_stack handles flatten and cat internally, but since cat needs to be before first Linear:
+        flattened = nn.Flatten()(conv_out)  # (batch_size, _feature_size)
+        combined = torch.cat((flattened, spec), dim=1)  # (batch_size, _feature_size + 10)
+        return self.fc_stack[1:](combined)
+    
+
+class AlexNet(nn.Module):
+    def __init__(self, height, width, num_targets, dropout: float = 0.5) -> None:
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(1, 64, kernel_size=11, stride=4, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(64, 192, kernel_size=5, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(192, 384, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(384, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(256, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+        )
+        self.avgpool = nn.AdaptiveAvgPool2d((6, 6))
+
+        self._feature_size = self._get_conv_output_size(height, width)
+        self.classifier = nn.Sequential(
+            nn.Dropout(p=dropout),
+            nn.Linear(self._feature_size, 4096),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=dropout),
+            nn.Linear(4096, 4096),
+            nn.ReLU(inplace=True),
+            nn.Linear(4096, num_targets),
+        )
+    def _get_conv_output_size(self, height, width):
+        dummy_input = torch.zeros(1, 1, height, width)
+        output = self.features(dummy_input)
+        output = self.avgpool(output)
+        return int(np.prod(output.size()))
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = self.features(x)
+        x = self.avgpool(x)
+        x = torch.flatten(x, 1)
+        x = self.classifier(x)
+        return x
