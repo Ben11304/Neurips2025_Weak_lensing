@@ -276,3 +276,148 @@ class AlexNet(nn.Module):
         x = torch.flatten(x, 1)
         x = self.classifier(x)
         return x
+    
+
+
+
+class ResidualBlock(nn.Module):
+    def __init__(self, in_features, out_features, dropout_rate=0.0):
+        super(ResidualBlock, self).__init__()
+        self.block = nn.Sequential(
+            nn.Linear(in_features, out_features),
+            nn.BatchNorm1d(out_features),
+            nn.ReLU(),
+            nn.Dropout(dropout_rate),
+            nn.Linear(out_features, out_features),
+            nn.BatchNorm1d(out_features)
+        )
+        self.shortcut = nn.Sequential()
+
+        if in_features != out_features:
+            self.shortcut = nn.Sequential(
+                nn.Linear(in_features, out_features),
+                nn.BatchNorm1d(out_features)
+            )
+        self.relu = nn.ReLU()
+
+    def forward(self, x):
+        identity = self.shortcut(x)
+        out = self.block(x)
+        out += identity
+        out = self.relu(out)
+        return out
+    
+
+
+class Spectrum_CNNv2(nn.Module):
+    def __init__(self, height, width, num_targets):
+        super(Spectrum_CNNv2, self).__init__()
+        self.conv_stack = nn.Sequential(
+            nn.Conv2d(1, 16, kernel_size=5, stride=2, padding=2),
+            nn.BatchNorm2d(16),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+
+        self._feature_size = self._get_conv_output_size(height, width)
+        
+        self.fc_stack = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(self._feature_size + 10, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            ResidualBlock(512, 512, dropout_rate=0.2),
+            ResidualBlock(512, 128, dropout_rate=0.1),
+            nn.Linear(128, num_targets)
+        )
+
+    def _get_conv_output_size(self, height, width): 
+        dummy_input = torch.zeros(1, 1, height, width)
+        output = self.conv_stack(dummy_input)
+        return int(np.prod(output.size()))
+    
+    
+    def forward(self, x):
+        image, spec = x  # Unpack tuple (image batch, spec batch)
+        conv_out = self.conv_stack(image)  # Apply conv to image only
+        # fc_stack handles flatten and cat internally, but since cat needs to be before first Linear:
+        flattened = nn.Flatten()(conv_out)  # (batch_size, _feature_size)
+        combined = torch.cat((flattened, spec), dim=1)  # (batch_size, _feature_size + 10)
+        return self.fc_stack[1:](combined)
+
+
+
+
+
+
+# class Spectrum_CNNv2(nn.Module):
+#     def __init__(self, height, width, num_targets):
+#         super(Simple_CNN, self).__init__()
+#         self.conv_stack = nn.Sequential(
+#             nn.Conv2d(1, 16, kernel_size=5, stride=2, padding=2),
+#             nn.BatchNorm2d(16),
+#             nn.ReLU(),
+#             nn.MaxPool2d(kernel_size=2, stride=2),
+
+#             nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1),
+#             nn.BatchNorm2d(32),
+#             nn.ReLU(),
+#             nn.MaxPool2d(kernel_size=2, stride=2),
+
+#             nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1),
+#             nn.BatchNorm2d(64),
+#             nn.ReLU(),
+#             nn.MaxPool2d(kernel_size=2, stride=2),
+
+#             nn.Conv2d(64, 128, kernel_size=3, stride=1, padding=1),
+#             nn.BatchNorm2d(128),
+#             nn.ReLU(),
+#             nn.MaxPool2d(kernel_size=2, stride=2)
+            
+#         )
+
+#         self._feature_size = self._get_conv_output_size(height, width)
+        
+#         self.fc_stack = nn.Sequential(
+#             nn.Flatten(),
+#             nn.Linear(self._feature_size + 10, 512),
+#             nn.ReLU(),
+#             nn.Dropout(0.2),
+#             nn.Linear(512, 128),
+#             nn.ReLU(),
+#             nn.Dropout(0.1),
+#             nn.Linear(128, num_targets)
+#         )
+#         self.residual = nn.Sequential(
+#             nn.Flattean(),
+#             nn.Linear(self._feature_size + 10, 512),
+#         )
+
+
+#     def _get_conv_output_size(self, height, width): 
+#         dummy_input = torch.zeros(1, 1, height, width)
+#         output = self.conv_stack(dummy_input)
+#         return int(np.prod(output.size()))
+
+#     def forward(self, x):
+#         image, spec = x  # Unpack tuple (image batch, spec batch)
+#         conv_out = self.conv_stack(image)  # Apply conv to image only
+#         # fc_stack handles flatten and cat internally, but since cat needs to be before first Linear:
+#         flattened = nn.Flatten()(conv_out)  # (batch_size, _feature_size)
+#         combined = torch.cat((flattened, spec), dim=1)  # (batch_size, _feature_size + 10)
+#         return self.fc_stack[1:](combined)  # Skip Flatten in fc_stack, apply the rest
+    
+
