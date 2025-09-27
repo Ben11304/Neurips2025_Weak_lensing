@@ -81,7 +81,7 @@ class CustomViT(nn.Module):
 
 class Simple_CNN(nn.Module):
     def __init__(self, height, width, num_targets):
-        super(Simple_CNN, self).__init__()
+        super().__init__()
         # Convolutional layers
         self.conv_stack = nn.Sequential(
             nn.Conv2d(1, 16, kernel_size=5, stride=2, padding=2),
@@ -135,7 +135,7 @@ class Simple_CNN(nn.Module):
 
 class Spectrum_CNN(nn.Module):
     def __init__(self, height, width, num_targets):
-        super(Simple_CNN, self).__init__()
+        super().__init__()
         self.conv_stack = nn.Sequential(
             nn.Conv2d(1, 16, kernel_size=5, stride=2, padding=2),
             nn.BatchNorm2d(16),

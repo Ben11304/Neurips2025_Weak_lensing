@@ -470,3 +470,4 @@ def load_config_and_lr(config_file: str) -> Tuple[Config, float]:
     print(f"Loaded config from {config_file}")
     print(f"Loaded learning rate: {current_lr}")
     return config, current_lr
+

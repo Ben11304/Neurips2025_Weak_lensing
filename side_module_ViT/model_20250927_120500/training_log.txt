@@ -1,0 +1,467 @@
+Training Log
+Started at 2025-09-27 12:05:00
+Config: EPOCHS=25, BATCH_SIZE=101, LEARNING_RATE=0.0002, DEVICE=mps, MODEL_SAVE_PATH=./side_module_ViT/model_20250927_120500/best_model.pth
+
+Epoch 1/25
+  Processing chunk 0...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 2.152519
+    Fold 1 Val Loss: 1.002671
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 1.228973
+    Fold 2 Val Loss: 1.001251
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 1.110741
+    Fold 3 Val Loss: 0.991140
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 1.053809
+    Fold 4 Val Loss: 0.982420
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 1.013038
+    Fold 5 Val Loss: 0.974873
+  Processing chunk 1...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.988023
+    Fold 1 Val Loss: 0.973763
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.958622
+    Fold 2 Val Loss: 1.172110
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.922601
+    Fold 3 Val Loss: 1.611140
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.815769
+    Fold 4 Val Loss: 2.196538
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.711407
+    Fold 5 Val Loss: 2.504038
+  Processing chunk 2...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.753176
+    Fold 1 Val Loss: 1.383756
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.713414
+    Fold 2 Val Loss: 0.923214
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.670587
+    Fold 3 Val Loss: 1.008849
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.611514
+    Fold 4 Val Loss: 0.650167
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.485042
+    Fold 5 Val Loss: 0.961351
+  Processing chunk 3...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.579630
+    Fold 1 Val Loss: 0.722493
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.441922
+    Fold 2 Val Loss: 0.737221
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.317858
+    Fold 3 Val Loss: 0.475761
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.253206
+    Fold 4 Val Loss: 0.728458
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.219871
+    Fold 5 Val Loss: 0.424723
+  Processing chunk 4...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.512598
+    Fold 1 Val Loss: 0.724263
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.329909
+    Fold 2 Val Loss: 0.493943
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.263689
+    Fold 3 Val Loss: 0.658209
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.199048
+    Fold 4 Val Loss: 0.343016
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.225435
+    Fold 5 Val Loss: 0.171370
+  Processing chunk 5...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.468571
+    Fold 1 Val Loss: 0.475140
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.339708
+    Fold 2 Val Loss: 0.288974
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.222355
+    Fold 3 Val Loss: 0.140523
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.239350
+    Fold 4 Val Loss: 0.522557
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.217907
+    Fold 5 Val Loss: 0.295674
+  Processing chunk 6...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.366396
+    Fold 1 Val Loss: 0.616905
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.315022
+    Fold 2 Val Loss: 0.188451
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.190336
+    Fold 3 Val Loss: 0.777305
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.189407
+    Fold 4 Val Loss: 0.203668
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.150776
+    Fold 5 Val Loss: 0.140707
+  Processing chunk 7...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.289255
+    Fold 1 Val Loss: 0.331111
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.242833
+    Fold 2 Val Loss: 0.310671
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.212367
+    Fold 3 Val Loss: 0.156221
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.163732
+    Fold 4 Val Loss: 0.089045
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.144268
+    Fold 5 Val Loss: 0.300287
+  Processing chunk 8...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.295885
+    Fold 1 Val Loss: 0.530200
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.161138
+    Fold 2 Val Loss: 0.445799
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.127934
+    Fold 3 Val Loss: 0.178214
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.133428
+    Fold 4 Val Loss: 0.113166
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.121012
+    Fold 5 Val Loss: 0.152988
+  Processing chunk 9...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.371543
+    Fold 1 Val Loss: 0.448755
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.264299
+    Fold 2 Val Loss: 0.208643
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.258697
+    Fold 3 Val Loss: 0.371241
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.247481
+    Fold 4 Val Loss: 0.222885
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.183041
+    Fold 5 Val Loss: 0.124252
+  Processing chunk 10...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.311066
+    Fold 1 Val Loss: 0.397734
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.278118
+    Fold 2 Val Loss: 0.887958
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.198769
+    Fold 3 Val Loss: 0.290464
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.170722
+    Fold 4 Val Loss: 0.233162
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.171657
+    Fold 5 Val Loss: 0.247736
+  Processing chunk 11...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.239795
+    Fold 1 Val Loss: 0.206776
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.180360
+    Fold 2 Val Loss: 0.107734
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.139236
+    Fold 3 Val Loss: 0.175044
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.129096
+    Fold 4 Val Loss: 0.086827
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.131210
+    Fold 5 Val Loss: 0.138394
+  Processing chunk 12...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.237283
+    Fold 1 Val Loss: 0.284110
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.223800
+    Fold 2 Val Loss: 0.307158
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.191977
+    Fold 3 Val Loss: 0.160002
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.149445
+    Fold 4 Val Loss: 0.096284
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.141788
+    Fold 5 Val Loss: 0.131147
+  Processing chunk 13...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.282590
+    Fold 1 Val Loss: 0.233917
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.216263
+    Fold 2 Val Loss: 0.235764
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.166205
+    Fold 3 Val Loss: 0.113520
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.141618
+    Fold 4 Val Loss: 0.105369
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.151937
+    Fold 5 Val Loss: 0.212303
+  Processing chunk 14...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.252607
+    Fold 1 Val Loss: 0.227797
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.151048
+    Fold 2 Val Loss: 0.252398
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.169310
+    Fold 3 Val Loss: 0.122088
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.135462
+    Fold 4 Val Loss: 0.138628
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.126906
+    Fold 5 Val Loss: 0.125768
+  Processing chunk 15...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.242448
+    Fold 1 Val Loss: 0.203437
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.182393
+    Fold 2 Val Loss: 0.168091
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.153817
+    Fold 3 Val Loss: 0.142710
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.133792
+    Fold 4 Val Loss: 0.102261
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.153224
+    Fold 5 Val Loss: 0.148292
+  Processing chunk 16...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.216201
+    Fold 1 Val Loss: 0.163296
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.178196
+    Fold 2 Val Loss: 0.172558
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.148974
+    Fold 3 Val Loss: 0.159624
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.131788
+    Fold 4 Val Loss: 0.079754
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.118623
+    Fold 5 Val Loss: 0.150619
+  Processing chunk 17...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.261737
+    Fold 1 Val Loss: 0.236211
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.225743
+    Fold 2 Val Loss: 0.360462
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.168233
+    Fold 3 Val Loss: 0.126846
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.148105
+    Fold 4 Val Loss: 0.305664
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.133904
+    Fold 5 Val Loss: 0.074424
+  Processing chunk 18...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.275974
+    Fold 1 Val Loss: 0.406450
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.229916
+    Fold 2 Val Loss: 0.291658
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.195738
+    Fold 3 Val Loss: 0.596567
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.172607
+    Fold 4 Val Loss: 0.233746
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.125945
+    Fold 5 Val Loss: 0.156149
+  Processing chunk 19...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.241857
+    Fold 1 Val Loss: 0.225851
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.195521
+    Fold 2 Val Loss: 0.095070
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.154000
+    Fold 3 Val Loss: 0.147240
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.157977
+    Fold 4 Val Loss: 0.074587
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.123985
+    Fold 5 Val Loss: 0.140708
+  Processing chunk 20...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.219993
+    Fold 1 Val Loss: 0.175946
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.152552
+    Fold 2 Val Loss: 0.363928
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.188523
+    Fold 3 Val Loss: 0.215735
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.146565
+    Fold 4 Val Loss: 0.212875
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.145005
+    Fold 5 Val Loss: 0.107577
+  Processing chunk 21...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.232339
+    Fold 1 Val Loss: 1.032465
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.185660
+    Fold 2 Val Loss: 0.549785
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.169552
+    Fold 3 Val Loss: 0.400613
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.146861
+    Fold 4 Val Loss: 0.131355
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.155882
+    Fold 5 Val Loss: 0.260108
+  Processing chunk 22...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.181802
+    Fold 1 Val Loss: 0.316070
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.184956
+    Fold 2 Val Loss: 0.231667
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.120024
+    Fold 3 Val Loss: 0.232694
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.113298
+    Fold 4 Val Loss: 0.101053
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.116607
+    Fold 5 Val Loss: 0.134077
+  Processing chunk 23...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.262951
+    Fold 1 Val Loss: 0.180745
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.205792
+    Fold 2 Val Loss: 0.769365
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.165801
+    Fold 3 Val Loss: 0.949513
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.150932
+    Fold 4 Val Loss: 0.079182
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.114161
+    Fold 5 Val Loss: 0.407244
+  Processing chunk 24...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.196292
+    Fold 1 Val Loss: 0.217538
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.169140
+    Fold 2 Val Loss: 0.106939
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.170585
+    Fold 3 Val Loss: 0.198181
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.123649
+    Fold 4 Val Loss: 0.097910
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.098950
+    Fold 5 Val Loss: 0.068804
+Epoch 1/25 | Avg Train Loss: 0.293808 | Val Loss: 0.395775 | Learning Rate: 0.000199
+  -> New best model saved to ./side_module_ViT/model_20250927_120500/best_model.pth (Val Loss: 0.395775)
+Epoch 2/25
+  Processing chunk 0...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.205932
+    Fold 1 Val Loss: 0.243279
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.196284
+    Fold 2 Val Loss: 0.099209
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.145073
+    Fold 3 Val Loss: 0.208272
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.108053
+    Fold 4 Val Loss: 0.091788
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.137835
+    Fold 5 Val Loss: 0.102116
+  Processing chunk 1...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.208885
+    Fold 1 Val Loss: 0.187185
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.162202
+    Fold 2 Val Loss: 0.131829
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.135633
+    Fold 3 Val Loss: 0.100892
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.103232
+    Fold 4 Val Loss: 0.089003
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.090813
+    Fold 5 Val Loss: 0.149588
+  Processing chunk 2...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.210653
+    Fold 1 Val Loss: 0.163382
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.159787
+    Fold 2 Val Loss: 0.125452
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.126163
+    Fold 3 Val Loss: 0.460461
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.113660
+    Fold 4 Val Loss: 0.074843
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.102662
+    Fold 5 Val Loss: 0.144712
+  Processing chunk 3...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.201305
+    Fold 1 Val Loss: 0.239095
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.143694
+    Fold 2 Val Loss: 0.149325
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.118151
+    Fold 3 Val Loss: 0.135126
+    Fold 4/5

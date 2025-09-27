@@ -1,0 +1,29 @@
+Training Log
+Started at 2025-09-27 12:03:23
+Config: EPOCHS=15, BATCH_SIZE=101, LEARNING_RATE=1e-06, DEVICE=mps, MODEL_SAVE_PATH=./side_module_ViT/model_20250927_120323/best_model.pth
+
+Epoch 1/15
+  Processing chunk 0...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.145394
+    Fold 1 Val Loss: 0.178463
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.131348
+    Fold 2 Val Loss: 0.103591
+    Fold 3/5
+    Epoch 1/1 | Train Loss: 0.092510
+    Fold 3 Val Loss: 0.133358
+    Fold 4/5
+    Epoch 1/1 | Train Loss: 0.085408
+    Fold 4 Val Loss: 0.072794
+    Fold 5/5
+    Epoch 1/1 | Train Loss: 0.078166
+    Fold 5 Val Loss: 0.044962
+  Processing chunk 1...
+    Fold 1/5
+    Epoch 1/1 | Train Loss: 0.119243
+    Fold 1 Val Loss: 0.272746
+    Fold 2/5
+    Epoch 1/1 | Train Loss: 0.118321
+    Fold 2 Val Loss: 0.062548
+    Fold 3/5
