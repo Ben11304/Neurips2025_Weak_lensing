@@ -47,5 +47,6 @@ def main():
     history = Trainer.train_pipeline(model, config)
 
 
+
 if __name__ == "__main__":
     main()
