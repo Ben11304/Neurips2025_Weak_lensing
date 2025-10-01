@@ -19,9 +19,11 @@ class CustomViT(nn.Module):
     """
     def __init__(self):
         super().__init__()
+        self.name= "ViT"
 
-        self.vit=SimpleViT(
-            image_size = 256,
+        
+        self.vit=SimpleViT( # dimensions of each map 
+            image_size = 1424,
             patch_size = 32,
             num_classes = 32768,
             dim = 1024,
@@ -83,6 +85,7 @@ class Simple_CNN(nn.Module):
     def __init__(self, height, width, num_targets):
         super().__init__()
         # Convolutional layers
+        self.name= "SimpleCNN"
         self.conv_stack = nn.Sequential(
             nn.Conv2d(1, 16, kernel_size=5, stride=2, padding=2),
             nn.BatchNorm2d(16),
@@ -136,6 +139,7 @@ class Simple_CNN(nn.Module):
 class Spectrum_CNN(nn.Module):
     def __init__(self, height, width, num_targets):
         super().__init__()
+        self.name = "SpectrumCNN"
         self.conv_stack = nn.Sequential(
             nn.Conv2d(1, 16, kernel_size=5, stride=2, padding=2),
             nn.BatchNorm2d(16),
@@ -188,9 +192,10 @@ class Spectrum_CNN(nn.Module):
 
 
 
-class Spectrum_CNNv2(nn.Module):
+class Spectrum_Alex(nn.Module):
     def __init__(self, height, width, num_targets):
         super(Simple_CNN, self).__init__()
+        self.name = "SpectrumAlex"
         self.conv_stack = nn.Sequential(
             nn.Conv2d(1, 64, kernel_size=11, stride=4, padding=2),
             nn.ReLU(inplace=True),
