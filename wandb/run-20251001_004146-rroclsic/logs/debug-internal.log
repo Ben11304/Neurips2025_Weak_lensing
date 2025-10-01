@@ -1,0 +1,6 @@
+{"time":"2025-10-01T00:41:47.232723-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-10-01T00:41:47.451148-04:00","level":"INFO","msg":"stream: created new stream","id":"rroclsic"}
+{"time":"2025-10-01T00:41:47.451211-04:00","level":"INFO","msg":"handler: started","stream_id":"rroclsic"}
+{"time":"2025-10-01T00:41:47.451303-04:00","level":"INFO","msg":"stream: started","id":"rroclsic"}
+{"time":"2025-10-01T00:41:47.451353-04:00","level":"INFO","msg":"writer: started","stream_id":"rroclsic"}
+{"time":"2025-10-01T00:41:47.451397-04:00","level":"INFO","msg":"sender: started","stream_id":"rroclsic"}
