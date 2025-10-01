@@ -15,21 +15,18 @@ class Config:
     BATCH_SIZE = 101
     EPOCHS = 60
     LEARNING_RATE = 2e-6
-    WEIGHT_DECAY = 1e-4   # L2 regularization to prevent overfitting
-    IMG_RESIZE = 256  # Resize images to 256x256 for ViT
-    # Use a torch.device object (avoid trailing comma which creates a tuple)
+    WEIGHT_DECAY = 1e-4 
     if torch.cuda.is_available():
         DEVICE = torch.device('cuda')
     elif getattr(torch.backends, 'mps', None) is not None and torch.backends.mps.is_available():
         DEVICE = torch.device('mps')
     else:
         DEVICE = torch.device('cpu')
-    MODEL_SAVE_PATH = None  # Will be set dynamically with timestamp
+    MODEL_SAVE_PATH = None 
 
 
 def main():
     config = Config()
-    # Choose model - change to Simple_CNN if preferred
     # model = Spectrum_CNN(config.IMG_HEIGHT, config.IMG_WIDTH, config.NUM_TARGETS)
     image_size = (config.IMG_HEIGHT, config.IMG_WIDTH)
     model = CustomViT(image_size= image_size,
