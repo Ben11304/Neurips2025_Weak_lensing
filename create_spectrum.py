@@ -123,4 +123,6 @@ for chunk_idx in tqdm(indices, desc="Chunks", leave=False):
                     l, Cl[i,j] = power_spectrum(noisy_chunk[i,j].astype(np.float32
                 ), pixelsize_radian, l_edge)
 
+            if not os.path.exists("./dataset/power_scpectrum"):
+                os.makedirs("./dataset/power_scpectrum", exist_ok=True)
             Utility.save_np(data_dir="./dataset/power_scpectrum", file_name=f"Spec_chunk_{chunk_idx}.npy",data=Cl)

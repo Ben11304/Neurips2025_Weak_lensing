@@ -1,0 +1,11 @@
+{"time":"2025-10-01T13:46:45.832652875-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-10-01T13:46:46.204245278-04:00","level":"INFO","msg":"stream: created new stream","id":"bsfat4tj"}
+{"time":"2025-10-01T13:46:46.204302697-04:00","level":"INFO","msg":"stream: started","id":"bsfat4tj"}
+{"time":"2025-10-01T13:46:46.204312172-04:00","level":"INFO","msg":"handler: started","stream_id":"bsfat4tj"}
+{"time":"2025-10-01T13:46:46.204314456-04:00","level":"INFO","msg":"sender: started","stream_id":"bsfat4tj"}
+{"time":"2025-10-01T13:46:46.204369881-04:00","level":"INFO","msg":"writer: started","stream_id":"bsfat4tj"}
+{"time":"2025-10-01T13:46:55.207405012-04:00","level":"INFO","msg":"stream: closing","id":"bsfat4tj"}
+{"time":"2025-10-01T13:46:55.585795047-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-10-01T13:46:55.736111849-04:00","level":"INFO","msg":"handler: closed","stream_id":"bsfat4tj"}
+{"time":"2025-10-01T13:46:55.736374016-04:00","level":"INFO","msg":"sender: closed","stream_id":"bsfat4tj"}
+{"time":"2025-10-01T13:46:55.736392876-04:00","level":"INFO","msg":"stream: closed","id":"bsfat4tj"}

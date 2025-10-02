@@ -278,7 +278,7 @@ class Trainer():
                 "LEARNING_RATE": config.LEARNING_RATE,
                 "WEIGHT_DECAY": config.WEIGHT_DECAY,
                 "DEVICE": config.DEVICE,
-                "IMG_RESIZE": config.IMG_RESIZE,
+                # "IMG_RESIZE": config.IMG_RESIZE,
                 "split_ratio": 0.8,
                 "epochs_per_chunk": 1
         })

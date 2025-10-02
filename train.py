@@ -12,9 +12,9 @@ class Config:
     NUM_TARGETS = 2
 
     # Training hyperparameters
-    BATCH_SIZE = 101
+    BATCH_SIZE = 18
     EPOCHS = 60
-    LEARNING_RATE = 2e-6
+    LEARNING_RATE = 1e-2
     WEIGHT_DECAY = 1e-4 
     if torch.cuda.is_available():
         DEVICE = torch.device('cuda')
@@ -31,10 +31,10 @@ def main():
     image_size = (config.IMG_HEIGHT, config.IMG_WIDTH)
     model = CustomViT(image_size= image_size,
                         patch_size=(16, 16),
-                        dim=768,
-                        depth=12,          
+                        dim=1024,
+                        depth=4,          
                         heads=12,       
-                        mlp_dim=3072,       
+                        mlp_dim=2048,       
                         channels=1,         
                         dim_head=64,
                         dropout=0.1,

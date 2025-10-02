@@ -1,0 +1,1 @@
+{"chunk":120,"train_loss":0.4007189843389723,"_wandb":{"runtime":4807},"epoch":4,"_runtime":4807,"_step":124,"val_loss":0.8540546840145474,"avg_train_loss":0.4546000718937979,"learning_rate":0.0001978147600733806,"_timestamp":1.759346896987509e+09}

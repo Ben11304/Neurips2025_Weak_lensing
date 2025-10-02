@@ -140,8 +140,8 @@ class CustomViT(nn.Module):
 
         output = self.regression_head(combined_features)  # [batch_size, output_dim]
 
-        return output, features
-
+        # return output, features
+        return output
 
 
 
