@@ -1,6 +1,0 @@
-{"time":"2025-09-20T01:06:43.772066-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
-{"time":"2025-09-20T01:06:43.996039-04:00","level":"INFO","msg":"stream: created new stream","id":"lrozb2pm"}
-{"time":"2025-09-20T01:06:43.996079-04:00","level":"INFO","msg":"stream: started","id":"lrozb2pm"}
-{"time":"2025-09-20T01:06:43.996087-04:00","level":"INFO","msg":"sender: started","stream_id":"lrozb2pm"}
-{"time":"2025-09-20T01:06:43.996086-04:00","level":"INFO","msg":"writer: started","stream_id":"lrozb2pm"}
-{"time":"2025-09-20T01:06:43.996116-04:00","level":"INFO","msg":"handler: started","stream_id":"lrozb2pm"}

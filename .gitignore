@@ -1,4 +1,5 @@
 dataset/
-best_model.pth
 Neurips2025_Weak_lensing/
 input_data/
+wandb/
+module_ready_to_run/

@@ -1,6 +1,0 @@
-{"time":"2025-09-19T13:35:44.156606-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
-{"time":"2025-09-19T13:35:44.369136-04:00","level":"INFO","msg":"stream: created new stream","id":"ejpflwl2"}
-{"time":"2025-09-19T13:35:44.369199-04:00","level":"INFO","msg":"stream: started","id":"ejpflwl2"}
-{"time":"2025-09-19T13:35:44.369189-04:00","level":"INFO","msg":"handler: started","stream_id":"ejpflwl2"}
-{"time":"2025-09-19T13:35:44.369253-04:00","level":"INFO","msg":"writer: started","stream_id":"ejpflwl2"}
-{"time":"2025-09-19T13:35:44.369391-04:00","level":"INFO","msg":"sender: started","stream_id":"ejpflwl2"}

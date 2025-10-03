@@ -1,6 +1,0 @@
-{"time":"2025-10-01T00:14:23.152986-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
-{"time":"2025-10-01T00:14:23.368416-04:00","level":"INFO","msg":"stream: created new stream","id":"ynip2vb2"}
-{"time":"2025-10-01T00:14:23.368448-04:00","level":"INFO","msg":"stream: started","id":"ynip2vb2"}
-{"time":"2025-10-01T00:14:23.368461-04:00","level":"INFO","msg":"handler: started","stream_id":"ynip2vb2"}
-{"time":"2025-10-01T00:14:23.368465-04:00","level":"INFO","msg":"writer: started","stream_id":"ynip2vb2"}
-{"time":"2025-10-01T00:14:23.368471-04:00","level":"INFO","msg":"sender: started","stream_id":"ynip2vb2"}

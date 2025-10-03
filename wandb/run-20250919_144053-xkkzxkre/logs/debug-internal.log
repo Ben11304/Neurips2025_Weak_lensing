@@ -1,8 +1,0 @@
-{"time":"2025-09-19T14:40:53.941168-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
-{"time":"2025-09-19T14:40:54.147537-04:00","level":"INFO","msg":"stream: created new stream","id":"xkkzxkre"}
-{"time":"2025-09-19T14:40:54.147557-04:00","level":"INFO","msg":"stream: started","id":"xkkzxkre"}
-{"time":"2025-09-19T14:40:54.147572-04:00","level":"INFO","msg":"sender: started","stream_id":"xkkzxkre"}
-{"time":"2025-09-19T14:40:54.147595-04:00","level":"INFO","msg":"handler: started","stream_id":"xkkzxkre"}
-{"time":"2025-09-19T14:40:54.147761-04:00","level":"INFO","msg":"writer: started","stream_id":"xkkzxkre"}
-{"time":"2025-09-19T14:42:54.686713-04:00","level":"ERROR","msg":"HTTP error","status":404,"method":"POST","url":"https://api.wandb.ai/files/huy_ben/cosmology_training/xkkzxkre/file_stream"}
-{"time":"2025-09-19T14:42:54.68741-04:00","level":"ERROR+4","msg":"filestream: fatal error: filestream: failed to upload: 404 Not Found path=files/huy_ben/cosmology_training/xkkzxkre/file_stream: {\"error\":\"run cosmology_training/xkkzxkre not found while streaming file\"}"}

@@ -1,7 +1,0 @@
-{"time":"2025-10-01T15:56:32.676903979-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
-{"time":"2025-10-01T15:56:32.871475377-04:00","level":"INFO","msg":"stream: created new stream","id":"z4kt5f7g"}
-{"time":"2025-10-01T15:56:32.871517651-04:00","level":"INFO","msg":"stream: started","id":"z4kt5f7g"}
-{"time":"2025-10-01T15:56:32.87153053-04:00","level":"INFO","msg":"handler: started","stream_id":"z4kt5f7g"}
-{"time":"2025-10-01T15:56:32.871532724-04:00","level":"INFO","msg":"sender: started","stream_id":"z4kt5f7g"}
-{"time":"2025-10-01T15:56:32.871539143-04:00","level":"INFO","msg":"writer: started","stream_id":"z4kt5f7g"}
-{"time":"2025-10-01T16:03:18.309781361-04:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/huy_ben/cosmology_training/z4kt5f7g/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}

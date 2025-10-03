@@ -1,6 +1,0 @@
-{"time":"2025-09-19T13:31:49.363508-04:00","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
-{"time":"2025-09-19T13:31:49.63352-04:00","level":"INFO","msg":"stream: created new stream","id":"rizqavn2"}
-{"time":"2025-09-19T13:31:49.633571-04:00","level":"INFO","msg":"stream: started","id":"rizqavn2"}
-{"time":"2025-09-19T13:31:49.633581-04:00","level":"INFO","msg":"sender: started","stream_id":"rizqavn2"}
-{"time":"2025-09-19T13:31:49.633576-04:00","level":"INFO","msg":"handler: started","stream_id":"rizqavn2"}
-{"time":"2025-09-19T13:31:49.633596-04:00","level":"INFO","msg":"writer: started","stream_id":"rizqavn2"}
