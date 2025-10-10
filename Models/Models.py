@@ -317,6 +317,7 @@ class ResidualBlock(nn.Module):
 class Spectrum_CNNv2(nn.Module):
     def __init__(self, height, width, num_targets):
         super(Spectrum_CNNv2, self).__init__()
+        self.name="spectrum_residual"
         self.conv_stack = nn.Sequential(
             nn.Conv2d(1, 16, kernel_size=5, stride=2, padding=2),
             nn.BatchNorm2d(16),
@@ -345,7 +346,8 @@ class Spectrum_CNNv2(nn.Module):
             nn.ReLU(),
             nn.Dropout(0.2),
             ResidualBlock(512, 512, dropout_rate=0.2),
-            ResidualBlock(512, 128, dropout_rate=0.1),
+            ResidualBlock(512, 256, dropout_rate=0.2),
+            ResidualBlock(256, 128, dropout_rate=0.1),
             nn.Linear(128, num_targets)
         )
 

@@ -85,23 +85,38 @@ pixelsize_radian = pixelsize_arcmin / 60 / 180 * np.pi
 class Inference():
     @staticmethod
     def inference(model, config, history = None ):
+        print("ready for inference")
+
+        # Ensure model is on the requested device
+        try:
+            model.to(config.DEVICE)
+        except Exception:
+            # Some models may already be on the correct device or not support .to in this context
+            pass
+
         transform, label_scaler = load_transform_and_scaler(transform_file='./side_module/transform_params.pkl', scaler_file='./side_module/label_scaler.pkl')
-        if history is not None:
-            total_val_datasets = history['total_val_datasets']
-            train_losses = history['train_losses']
-            total_samples = history['total_samples']
-            total_epochs = history['total_epochs']
+        # if history is not None:
+        #     total_val_datasets = history['total_val_datasets']
+        #     train_losses = history['train_losses']
+        #     total_samples = history['total_samples']
+        #     total_epochs = history['total_epochs']
 
         save_dir = f"./dataset/val_set/"
         os.makedirs(save_dir, exist_ok=True)
 
-        # Đường dẫn file lưu trữ
+        # if os.path.exists(val_data_path) and os.path.exists(val_labels_path) and os.path.exists(val_specs_path):
+        #     all_val_data = np.load(val_data_path)
+        #     all_val_labels = np.load(val_labels_path)
+        #     Cl = np.load(val_specs_path)
+        #     print(f"Loaded validation data from {save_dir}")
+        # # Đường dẫn file lưu trữ
         val_data_path = os.path.join(save_dir, "all_val_data.npy")
         val_labels_path = os.path.join(save_dir, "all_val_labels.npy")
         val_specs_path = os.path.join(save_dir, "all_val_specs.npy")
         metadata_path = os.path.join(save_dir, "validation_metadata.pkl")
+        Val=True
 
-        if total_val_datasets:
+        if Val:
             if os.path.exists(val_data_path) and os.path.exists(val_labels_path) and os.path.exists(val_specs_path):
                 all_val_data = np.load(val_data_path)
                 all_val_labels = np.load(val_labels_path)
@@ -199,16 +214,32 @@ class Inference():
         # mean summary statistics (average over all realizations)
         mean_d_vector = []
         for i in range(Ncosmo):
-            mean_d_vector.append(np.mean(d_vector[i], 0))
-        mean_d_vector = np.array(mean_d_vector)   
+            # If no realizations for this cosmology, mark with NaNs so it will be ignored by interpolator
+            if d_vector[i].size == 0:
+                mean_d_vector.append(np.full((n_d,), np.nan))
+            else:
+                mean_d_vector.append(np.mean(d_vector[i], 0))
+        mean_d_vector = np.array(mean_d_vector)
 
         # covariance matrix
         delta = []
         for i in range(Ncosmo):
             delta.append((d_vector[i] - mean_d_vector[i].reshape(1, n_d))) 
 
-        cov_d_vector = [(delta[i].T @ delta[i] / (len(delta[i])-n_d-2))[None] for i in range(Ncosmo)]     
-        cov_d_vector = np.concatenate(cov_d_vector, 0) 
+        # Build covariance matrices with safety checks to avoid division by zero / singular matrices
+        cov_list = []
+        for i in range(Ncosmo):
+            denom = (len(delta[i]) - n_d - 2)
+            if denom <= 0 or delta[i].size == 0:
+                # Not enough samples to estimate covariance; fall back to tiny diagonal covariance
+                cov = np.eye(n_d, dtype=float) * 1e-6
+            else:
+                cov = (delta[i].T @ delta[i]) / denom
+                # If covariance contains NaNs or infs, replace with small diagonal
+                if not np.all(np.isfinite(cov)):
+                    cov = np.eye(n_d, dtype=float) * 1e-6
+            cov_list.append(cov[None])
+        cov_d_vector = np.concatenate(cov_list, 0)
         mean_d_vector_interp = LinearNDInterpolator(cosmology, mean_d_vector, fill_value=np.nan)
         cov_d_vector_interp = LinearNDInterpolator(cosmology, cov_d_vector, fill_value=np.nan)
 
@@ -220,20 +251,84 @@ class Inference():
 
         # Gaussian likelihood with interpolated mean and covariance matrix
         def loglike(x, d):
-            mean = mean_d_vector_interp(x) 
-            cov = cov_d_vector_interp(x)   
-            delta = d - mean               
-            
-            inv_cov = np.linalg.inv(cov)
-            cov_det = np.linalg.slogdet(cov)[1]
-            
-            return -0.5 * cov_det - 0.5 * np.einsum("ni,nij,nj->n", delta, inv_cov, delta)
+            mean = mean_d_vector_interp(x)
+            cov = cov_d_vector_interp(x)
+            delta = d - mean
+
+            # cov may be (n_d,) when interpolation returns scalar or malformed — ensure correct shape
+            # If cov has shape (n_d,) treat as diagonal
+            try:
+                # Ensure cov is an array with shape (..., n_d, n_d)
+                cov = np.asarray(cov)
+            except Exception:
+                return -np.inf * np.ones(len(delta))
+
+            # If interpolation returns a single covariance (same for all), broadcast
+            if cov.ndim == 2 and cov.shape == (n_d, n_d):
+                cov = np.tile(cov[None], (len(delta), 1, 1))
+
+            # Prepare outputs (default to -inf for invalid entries)
+            out = np.full(len(delta), -np.inf, dtype=float)
+
+            for idx in range(len(delta)):
+                # If mean or delta has NaNs for this entry, skip (leave -inf)
+                try:
+                    mean_i = mean[idx]
+                except Exception:
+                    mean_i = None
+                if mean_i is None or not np.all(np.isfinite(mean_i)):
+                    out[idx] = -np.inf
+                    continue
+                Ci = cov[idx]
+                # Replace non-finite entries in covariance
+                if not np.all(np.isfinite(Ci)):
+                    Ci = np.eye(n_d, dtype=float) * 1e-6
+
+                # Add small jitter proportional to trace to help numerical stability
+                trace = np.trace(Ci)
+                if np.isfinite(trace) and trace > 0:
+                    eps = 1e-8 * trace
+                else:
+                    eps = 1e-6
+                Ci = Ci + np.eye(n_d) * eps
+
+                try:
+                    inv_Ci = np.linalg.inv(Ci)
+                    sign, logdet = np.linalg.slogdet(Ci)
+                    if sign <= 0 or not np.isfinite(logdet):
+                        # fallback to pseudo-inverse
+                        inv_Ci = np.linalg.pinv(Ci)
+                        logdet = np.log(np.linalg.det(Ci) + 1e-20) if np.linalg.det(Ci) != 0 else 0.0
+                except np.linalg.LinAlgError:
+                    inv_Ci = np.linalg.pinv(Ci)
+                    # compute a stable logdet approximation
+                    try:
+                        s = np.linalg.svd(Ci, compute_uv=False)
+                        logdet = np.sum(np.log(s[s > 0]))
+                    except Exception:
+                        logdet = 0.0
+
+                # Mahalanobis term
+                try:
+                    maha = np.einsum("i,ij,j->", delta[idx], inv_Ci, delta[idx])
+                except Exception:
+                    maha = np.inf
+
+                if np.isfinite(maha):
+                    out[idx] = -0.5 * logdet - 0.5 * maha
+                else:
+                    out[idx] = -np.inf
+
+            return out
 
         def logp_posterior(x, d):
             logp = log_prior(x)
             select = np.isfinite(logp)
             if np.sum(select) > 0:
-                logp[select] = logp[select] + loglike(x[select], d[select])
+                ll = loglike(x[select], d[select])
+                # Replace any non-finite log-likelihood values with -inf before adding
+                ll = np.where(np.isfinite(ll), ll, -np.inf)
+                logp[select] = logp[select] + ll
             return logp
 
         Nval=all_val_labels_inv.shape[0]
